@@ -1,0 +1,10 @@
+#!/bin/bash
+cd cs3243project
+source cs3243projectenv/bin/activate >> ~/cs3243project/backup.log
+cd kingOfTheHill/mypoker/StudentAgentUploadsTemp/
+date >> ~/cs3243project/backup.log
+echo 'Start Background process 1' >> ~/cs3243project/backup.log
+timeout 299 python ~/cs3243project/manage.py process_tasks >> ~/cs3243project/backup.log
+date >> ~/cs3243project/backup.log
+echo 'End Background process' >> ~/cs3243project/backup.log
+

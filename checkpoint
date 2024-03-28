@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/martin/cs3243project/Group05BestModelEarlyStopping.ckpt"
+all_model_checkpoint_paths: "/home/martin/cs3243project/Group05BestModelEarlyStopping.ckpt"

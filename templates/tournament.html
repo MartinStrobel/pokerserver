@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<tbody>
+				<tr><td> <b>Start of last tournament: </b></td> <td> {{tournament.startTime}} </td> </tr>
+				<tr><td> <b>End of last tournament: </b></td> <td>{{tournament.endTime}}  </td> </tr>
+				<tr><td> <b> Settings: </b></td> <td> <b>   </b></td> </tr>
+				<tr><td> Number of games:</td> <td>  {{setting.num_game}}  </td> </tr>
+				<tr><td> Maximal number of rounds: </td> <td>  {{setting.max_round}}  </td> </tr>
+				<tr><td> Initial stack: </td> <td>  {{setting.initial_stack}}  </td> </tr>
+				<tr><td> Small blind amount: </td> <td>  {{setting.smallblind_amount}}  </td> </tr>
+				<tr><td> <b> Winner: </b></td> <td> <b>  {{winner}}  </b></td> </tr>
+			</tbody>
+		</table>
+		{% if martin %}
+		<form action="/ranking/"  method="post"> 
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit"value="Run new tournament"/>
+		</form>
+		{% endif %}
+		<table class="table">
+			<tbody>
+				{% for level in fights%}
+				<tr>
+					{% for fight in level%}
+					<td colspan={{ fight.level}} align=center style="border-left: solid 2px #000; border-top: solid 2px #000">{{ fight.player1}}</td>
+					<td colspan={{ fight.level}} align=center style="border-right: solid 2px #000; border-top: solid 2px #000" >{{ fight.player2}}</td>
+					{% endfor %}
+				</tr>
+				<tr>
+					{% for fight in level%}
+					<td colspan={{ fight.level }} align=center style="border-left: solid 2px #000; border-bottom: solid 2px #000">{{ fight.player1_pot}}</td>
+					<td colspan={{ fight.level }} align=center style="border-right: solid 2px #000; border-bottom: solid 2px #000" >{{ fight.player2_pot}}</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</tbody>
+	</table>
+
+</div>
+</div>
+{% if haveMessage %}
+
+<div class="w3-container">
+	<div id="id01" class="w3-modal" style="display:block">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+				<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+				<p>{{messageTitle}}</p>
+				<p>{{message}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}
+
+

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+   <p> Current King: {{king.name}} </p>
+   <p> King since: {{king.coronation}} </p>
+ </div>
+ <div class="row">
+   Do you want to challenge the current king? Please upload your agent:
+   <form method='POST' enctype="multipart/form-data"> {% csrf_token %}
+    {{form.as_p }}
+    <input type='submit' value='Save' />
+  </form>
+</div>
+</div>
+{% if haveMessage %}
+
+<div class="w3-container">
+  <div id="id01" class="w3-modal" style="display:block">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <p>{{messageTitle}}</p>
+        <p>{{message}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+
